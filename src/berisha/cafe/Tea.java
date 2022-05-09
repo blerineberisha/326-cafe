@@ -3,7 +3,7 @@ package berisha.cafe;
 public class Tea extends Beverage{
     @Override
     public String getDescription() {
-        return super.getDescription() + " Coffee ";
+        return super.getDescription() + " Chai tea ";
     }
 
     @Override

@@ -8,15 +8,18 @@ package berisha.cafe;
  * This class implements the methods from the
  * BeverageDecorator interface.
  */
-public class Amaretto implements BeverageDecorator {
+public class Amaretto extends BeverageDecorator {
+    private Beverage beverage;
 
-    @Override
-    public String getDescription(Beverage beverage) {
+    public Amaretto(Beverage beverage) {
+        this.beverage = beverage;
+    }
+
+    public String getDescription() {
         return beverage.getDescription() + "with Amaretto";
     }
 
-    @Override
-    public double getCost(Beverage beverage) {
+    public double getCost() {
         return beverage.getCost() + 0.5;
     }
 }

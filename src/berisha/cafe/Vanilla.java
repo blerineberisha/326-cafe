@@ -8,14 +8,19 @@ package berisha.cafe;
  * This class implements the methods from the
  * BeverageDecorator interface.
  */
-public class Vanilla implements BeverageDecorator {
-    @Override
-    public String getDescription(Beverage beverage) {
+public class Vanilla extends BeverageDecorator {
+private Beverage beverage;
+
+    public Vanilla(Beverage beverage) {
+        this.beverage = beverage;
+    }
+
+    public String getDescription() {
         return beverage.getDescription() + "with Vanilla";
     }
 
-    @Override
-    public double getCost(Beverage beverage) {
+
+    public double getCost() {
         return beverage.getCost() + 0.3;
     }
 }

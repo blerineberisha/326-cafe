@@ -1,9 +1,9 @@
 package berisha.cafe;
 
-public abstract class Side extends Food {
+public class NoSide extends Side{
     @Override
     String getDescription() {
-        return super.getDescription() + "with ";
+        return super.getDescription() + "nothing";
     }
 
     @Override

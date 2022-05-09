@@ -5,14 +5,12 @@ package berisha.cafe;
  * project.
  * Here we implement the methods from the item class.
  */
-public class Beverage implements Item {
+public abstract class Beverage extends Item {
 
-    @Override
     public double getCost() {
         return 0;
     }
 
-    @Override
     public String getDescription() {
         return "Drink: ";
     }

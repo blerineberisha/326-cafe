@@ -3,15 +3,17 @@ package berisha.cafe;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Order {
+/**
+ * In this class we have the methods in which orders can be created.
+ * Items can be added or removed. Orders can be cancelled.
+ * The total price and the change are also calculated in this class.
+ */
+public class Order{
     private int orderId;
-    private double serviceFee;
     private ArrayList<Item> order = new ArrayList<Item>();
 
-    public Order(AtomicInteger orderId, double serviceFee, ArrayList<Item> order) {
+    public Order(AtomicInteger orderId) {
         this.orderId = orderId.getAndIncrement();
-        this.serviceFee = serviceFee;
-        this.order = order;
     }
 
     public void addItem(Item item) {
@@ -44,14 +46,6 @@ public class Order {
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
-    }
-
-    public double getServiceFee() {
-        return serviceFee;
-    }
-
-    public void setServiceFee(double serviceFee) {
-        this.serviceFee = serviceFee;
     }
 
     public ArrayList<Item> getOrder() {

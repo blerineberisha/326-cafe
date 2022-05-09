@@ -1,7 +1,11 @@
 package berisha.cafe;
 
-public interface BeverageDecorator {
-    String getDescription(Beverage beverage);
+/**
+ * In this class, we define decorator methods that are meant to be implemented.
+ * These methods are specifically for beverages, i.e., coffees, teas and softdrinks.
+ */
+public abstract class BeverageDecorator extends Beverage {
+    public abstract String getDescription();
 
-    double getCost(Beverage beverage);
+    public abstract double getCost();
 }

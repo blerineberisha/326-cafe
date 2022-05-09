@@ -1,6 +1,6 @@
 package berisha.cafe;
 
-public abstract class Pastry extends Food {
+public class NoPastry extends Pastry{
     @Override
     double getCost() {
         return super.getCost();
@@ -8,6 +8,6 @@ public abstract class Pastry extends Food {
 
     @Override
     String getDescription() {
-        return super.getDescription() + "Pastry, ";
+        return super.getDescription() + "none";
     }
 }
