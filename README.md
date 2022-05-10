@@ -177,7 +177,7 @@ More specifically, I test:
 The project can be improved by making it more compact and applicable to more 
 different items or persist the orders in a database for example.  
 
-Improvement ideas:
+Ideas:
 - adding softdrinks and make water extend softdrinks instead of Beverage directly
 - adding more sides
 - adding more food options
