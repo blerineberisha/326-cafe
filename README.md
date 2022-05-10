@@ -60,6 +60,7 @@ Technically a NullPointerException could occur,
 but since the arraylist and order are given in the
 according method and can't be
 deleted, that can't happen.
+
 ---
 #### Use case 3 - ordering a menu
 ##### Pre-condition
@@ -73,6 +74,7 @@ Technically a NullPointerException could occur,
 but since the arraylist and order are given in the
 according method and can't be
 deleted, that can't happen.
+
 ---
 #### Use case 4 - ordering a menu with a side
 ##### Pre-condition
@@ -86,6 +88,7 @@ Technically a NullPointerException could occur,
 but since the arraylist and order are given in the
 according method and can't be
 deleted, that can't happen.
+
 ---
 #### Use case 5 - ordering a menu with a side and a beverage
 ##### Pre-condition
@@ -99,6 +102,7 @@ Technically a NullPointerException could occur,
 but since the arraylist and order are given in the
 according method and can't be
 deleted, that can't happen.
+
 ---
 #### Use case 6 - cancelling an order
 ##### Pre-condition
