@@ -50,6 +50,7 @@ and grew by 1.
 Technically a NullPointerException could occur, 
 but since the arraylist is given and can't be 
 deleted, that can't happen.
+
 ---
 #### Use case 2 - ordering a beverage
 ##### Pre-condition
