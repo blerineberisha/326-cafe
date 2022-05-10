@@ -3,6 +3,7 @@
 With his café shop, a user can view items like coffee, baked goods and other, and add extras to their orders
 i.e., adding glazing, chocolate sauce, maple syrup, sprinkles, extra whipped cream, extra flavor (vanilla, caramel, hazelnut), etc. 
 
+---
 ## Overview
 
 - [Short description](#cafe-shop)
@@ -10,13 +11,15 @@ i.e., adding glazing, chocolate sauce, maple syrup, sprinkles, extra whipped cre
 - [Changes I've made](#changes-ive-made)
 - [Use cases](#use-cases)
 - [Testing](#testing)
-
-
+- [Improvement ideas](#improvement-ideas)
+- 
+---
 ## Diagrams
 
 Both, the domain diagram and the use case diagram can be found on the following website:
 https://blerineberisha.github.io/diagrams/
 
+---
 ## Changes I've made
 First and foremost I didn't change much of the structure.  
 I added
@@ -31,7 +34,7 @@ with REST, but quickly threw that idea out the window, once the
 authorisation decided to fail me constantly.  
 And so a normal java project has been created!
 
-
+---
 ## Use cases
 
 ### Customer view
@@ -168,3 +171,21 @@ More specifically, I test:
 - the validation for inputs of type integer
 - the validation for inputs of type string
 - the validation for inputs of type double
+
+---
+## Improvement ideas
+The project can be improved by making it more compact and applicable to more 
+different items or persist the orders in a database for example.  
+
+Improvement ideas:
+- adding softdrinks and make water extend softdrinks instead of Beverage directly
+- adding more sides
+- adding more food options
+- create more preset menus
+- persist orders in database
+- adding more pastries
+- adding extras to pastries (PastryDecorator)
+- adding Sauces (FoodDecorator/MenuDecorator)
+- make food items personalised as well (Sandwich with no pickles, sandwich with extra tomato, etc.)
+- add different coffees (Decaf, Cappuccino, Macchiato, etc.)
+- etc.
