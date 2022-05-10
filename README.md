@@ -141,6 +141,7 @@ All orders printed in console - no change in state or variables.
 Technically a NullPointerException could occur,
 but since the arraylist and order are given, 
 and can't be deleted, that can't happen.
+
 ---
 #### Use case 9 - delete an order
 ##### Pre-condition
