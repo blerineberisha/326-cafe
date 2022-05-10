@@ -12,7 +12,7 @@ i.e., adding glazing, chocolate sauce, maple syrup, sprinkles, extra whipped cre
 - [Use cases](#use-cases)
 - [Testing](#testing)
 - [Improvement ideas](#improvement-ideas)
-- 
+
 ---
 ## Diagrams
 
