@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Items can be added or removed. Orders can be cancelled.
  * The total price and the change are also calculated in this class.
  */
-public class Order{
+public class Order {
     private int orderId;
     private ArrayList<Item> order = new ArrayList<Item>();
 
@@ -16,18 +16,19 @@ public class Order{
         this.orderId = orderId.getAndIncrement();
     }
 
+    /**
+     * Method to add an item to the order
+     *
+     * @param item the item to be added to the order.
+     */
     public void addItem(Item item) {
         order.add(item);
     }
 
-    public void removeItem(int index) {
-        order.remove(order.get(index));
-    }
-
-    public void cancelOrder() {
-        System.out.println("Order cancelled.");
-    }
-
+    /**
+     * @param paymentAmount amount of money the user wants to pay
+     * @return returns the change for the amount of money the user wants to pay
+     */
     public double calculateChange(double paymentAmount) {
         double change = calculatePrice() - paymentAmount;
         change *= -1;
@@ -37,6 +38,11 @@ public class Order{
         return change;
     }
 
+    /**
+     * Method to calculate the price of an order
+     *
+     * @return returns a double that is the total price
+     */
     public double calculatePrice() {
         double total = 0;
         for (Item item : order) {

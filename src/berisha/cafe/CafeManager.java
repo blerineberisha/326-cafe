@@ -9,8 +9,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  * the admin options are implemented.
  */
 public class CafeManager {
+    // these are variables which will be used throughout the run of the program.
     static ArrayList<Order> allOrders = new ArrayList<>();
     static AtomicInteger orderId = new AtomicInteger(0);
+
+    /**
+     * This is the method to choose the start action when the program is started.
+     */
     public static void chooseStartAction() {
         IOHandler.printCup();
         IOHandler.printStartMenu();
@@ -227,7 +232,7 @@ public class CafeManager {
 
     /**
      * @param order to calculate the total price and calculate the change, we need the entire order
-     *              so we can calculate the order's cost and the change accordingly (and rounds the cost).
+     *              so we can calculate the order's cost and the change accordingly.
      */
     public static void payingForFood(Order order) {
         Scanner input = new Scanner(System.in);

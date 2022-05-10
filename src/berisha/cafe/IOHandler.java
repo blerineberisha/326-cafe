@@ -172,7 +172,7 @@ public class IOHandler {
     /**
      * prints all items of all orders
      *
-     * @param orders
+     * @param orders needs an arraylist with all orders to iterate through them.
      */
     public static void printAllOrders(ArrayList<Order> orders) {
         if (!orders.isEmpty()) {
@@ -185,6 +185,9 @@ public class IOHandler {
         }
     }
 
+    /**
+     * prints all the options the admin can use.
+     */
     public static void printAdminOptions() {
         System.out.println("╔═════════════════════════════════╗");
         System.out.println("║           ADMIN VIEW            ║");
@@ -196,11 +199,20 @@ public class IOHandler {
         System.out.println("╚═════════════════════════════════╝");
     }
 
+    /**
+     * asks the user if they want pastry with their (breakfast) order.
+     */
     public static void pastry() {
         System.out.println("Would you like a croissant with this?");
         System.out.println("Please enter 'y' or 'n'.");
     }
 
+    /**
+     *
+     * @param string string that needs to be validated
+     * @return returns either the validated string or an empty string
+     * if the string is invalid
+     */
     public static String validateString(String string) {
         Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         Matcher m = p.matcher(string);
@@ -212,6 +224,12 @@ public class IOHandler {
         }
     }
 
+    /**
+     *
+     * @param strNum string that needs to be validated
+     * @return returns either the double that has been validated or 0,
+     * depending on whether the input is valid or not.
+     */
     public static double isDouble(String strNum) {
         double d = 0;
         if (strNum == null) {
@@ -227,6 +245,12 @@ public class IOHandler {
         return d;
     }
 
+    /**
+     *
+     * @param strNum string that needs to be validated
+     * @return returns either the integer that has been validated or 0,
+     * depending on whether the input is valid or not.
+     */
     public static int isInteger(String strNum) {
         int d = 0;
         if (strNum == null) {

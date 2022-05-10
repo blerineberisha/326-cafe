@@ -1,7 +1,8 @@
 package berisha.cafe;
 
 /**
- *
+ * This is the menu class where different menus can be created.
+ * I.e., createSandwichMenu() or createBreakfastMenu();
  */
 public class Menu extends Food {
     private Food food;

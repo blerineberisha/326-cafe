@@ -1,7 +1,7 @@
 package berisha.cafe;
 
 /**
- * This is the croissant class, which extends pastry.
+ * This is the croissant class, which extends pastry. And is... the only pastry.
  *
  */
 public class Croissant extends Pastry {
