@@ -26,6 +26,7 @@ public class CafeManager {
                 case 1 -> adminOptions();
                 case 2 -> createOrder();
                 case 3 -> System.exit(0);
+                default -> System.err.println("Invalid option! Try again");
             }
             IOHandler.printStartMenu();
             choice = IOHandler.isInteger(input.next());
@@ -79,6 +80,7 @@ public class CafeManager {
                 case 1 -> IOHandler.printAllOrders(allOrders);
                 case 2 -> deleteAnOrder();
                 case 3 -> allOrders.removeAll(allOrders);
+                default -> System.err.println("Invalid option! Try again");
             }
             IOHandler.printAdminOptions();
             choice = IOHandler.isInteger(input.next());
@@ -118,6 +120,8 @@ public class CafeManager {
                     allOrders.remove(newOrder);
                     startCafe();
                 }
+                case 9 -> startCafe();
+                default -> System.err.println("Invalid option! Try again");
             }
             allOrders.add(newOrder);
             IOHandler.printOrderOptions();

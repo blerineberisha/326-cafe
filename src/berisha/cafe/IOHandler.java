@@ -59,6 +59,7 @@ public class IOHandler {
         System.out.println("║ 6. Order Side                   ║");
         System.out.println("║ 7. Finish order                 ║");
         System.out.println("║ 8. Cancel order                 ║");
+        System.out.println("║ 9. Back to start menu           ║");
         System.out.println("╚═════════════════════════════════╝");
     }
 
@@ -162,10 +163,10 @@ public class IOHandler {
             String padded = String.format("%-88s", item.getDescription());
             System.out.println("║ " + order.getOrderId() + ".   " + padded + "  ║");
         }
-        String toPad = String.format( "%-92s", order.calculatePrice());
+        String toPad = String.format( "%90s", order.calculatePrice() + " CHF");
         System.out.println("╟────────────────────────────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║                                                                                   Total        ║");
-        System.out.println("║ " + toPad + "  ║");
+        System.out.println("║                                                                                    Total       ║");
+        System.out.println("║ " + toPad + "     ║");
         System.out.println("╚════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 
