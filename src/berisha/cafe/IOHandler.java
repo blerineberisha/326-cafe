@@ -1,6 +1,8 @@
 package berisha.cafe;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class mainly handles the output of the project. ALl print methods can be found here.
@@ -53,7 +55,7 @@ public class IOHandler {
         System.out.println("║ 2. Order Tea                    ║");
         System.out.println("║ 3. Order Water                  ║");
         System.out.println("║ 4. Order Menu                   ║");
-        System.out.println("║ 5. Order Pastry                 ║");
+        System.out.println("║ 5. Order Pastry (Croissant)     ║");
         System.out.println("║ 6. Order Side                   ║");
         System.out.println("║ 7. Finish order                 ║");
         System.out.println("║ 8. Cancel order                 ║");
@@ -146,34 +148,40 @@ public class IOHandler {
 
     /**
      * prints all items of an order
+     *
      * @param order the order of which the items should be printed of.
      *              The format method is used to make the borders of the box the same width for dynamic strings.
      */
     public static void printItemsOfOrder(Order order) {
-        System.out.println("╔═════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║ ORDER                                                                   ║");
-        System.out.println("╟─────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║ ID   Item                                                               ║");
-        System.out.println("╠═════════════════════════════════════════════════════════════════════════╣")
-        ;
+        System.out.println("╔════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║ ORDER                                                                                          ║");
+        System.out.println("╟────────────────────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║ ID   Item                                                                                      ║");
+        System.out.println("╠════════════════════════════════════════════════════════════════════════════════════════════════╣");
         for (Item item : order.getOrder()) {
-            String padded = String.format("%-65s", item.getDescription());
+            String padded = String.format("%-88s", item.getDescription());
             System.out.println("║ " + order.getOrderId() + ".   " + padded + "  ║");
-
         }
-        System.out.println("╟─────────────────────────────────────────────────────────────────────────╢");
-        System.out.println("║                                                            Total        ║");
-        System.out.println("║                                                               " + order.calculatePrice() + "   CHF ║");
-        System.out.println("╚═════════════════════════════════════════════════════════════════════════╝");
+        String toPad = String.format( "%-92s", order.calculatePrice());
+        System.out.println("╟────────────────────────────────────────────────────────────────────────────────────────────────╢");
+        System.out.println("║                                                                                   Total        ║");
+        System.out.println("║ " + toPad + "  ║");
+        System.out.println("╚════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 
     /**
      * prints all items of all orders
+     *
      * @param orders
      */
     public static void printAllOrders(ArrayList<Order> orders) {
-        for (Order order : orders) {
-            printItemsOfOrder(order);
+        if (!orders.isEmpty()) {
+            for (Order order : orders) {
+                printItemsOfOrder(order);
+            }
+        }
+        else{
+            System.err.println("Orders list is empty!");
         }
     }
 
@@ -191,5 +199,46 @@ public class IOHandler {
     public static void pastry() {
         System.out.println("Would you like a croissant with this?");
         System.out.println("Please enter 'y' or 'n'.");
+    }
+
+    public static String validateString(String string) {
+        Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(string);
+        if (m.find()) {
+            System.err.println("Invalid input!");
+            return "";
+        } else {
+            return string;
+        }
+    }
+
+    public static double isDouble(String strNum) {
+        double d = 0;
+        if (strNum == null) {
+            System.err.println("Please enter a value");
+        } else {
+
+            try {
+                d = Double.parseDouble(strNum);
+            } catch (NumberFormatException nfe) {
+                System.err.println("Not a number!");
+            }
+        }
+        return d;
+    }
+
+    public static int isInteger(String strNum) {
+        int d = 0;
+        if (strNum == null) {
+            System.err.println("Please enter a value");
+        } else {
+            try {
+                d = Integer.parseInt(strNum);
+            } catch (NumberFormatException nfe) {
+                System.err.println("Not an integer!");
+                ;
+            }
+        }
+        return d;
     }
 }

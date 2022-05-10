@@ -20,13 +20,13 @@ public class Menu extends Food {
         Sandwich sandwich = new Sandwich();
         Beverage beverage = CafeManager.createCoffee();
         Side side = CafeManager.chooseSide();
-        return new Menu(sandwich, side, null, beverage);
+        return new Menu(sandwich, side, new NoPastry(), beverage);
     }
 
     public static Menu createBreakfastMenu() {
         Breakfast breakfast = new Breakfast();
         Beverage beverage = CafeManager.createCoffee();
-        Side side = CafeManager.chooseSide();
+        Side side = new NoSide();
         Pastry pastry = new Croissant();
         return new Menu(breakfast, side, pastry, beverage);
     }

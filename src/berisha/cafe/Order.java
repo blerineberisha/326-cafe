@@ -29,7 +29,12 @@ public class Order{
     }
 
     public double calculateChange(double paymentAmount) {
-        return calculatePrice() - paymentAmount;
+        double change = calculatePrice() - paymentAmount;
+        change *= -1;
+        change *= 100;
+        change = Math.round(change);
+        change /= 100;
+        return change;
     }
 
     public double calculatePrice() {
@@ -37,6 +42,9 @@ public class Order{
         for (Item item : order) {
             total += item.getCost();
         }
+        total *= 100;
+        total = Math.round(total);
+        total /= 100;
         return total;
     }
 

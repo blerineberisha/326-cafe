@@ -1,7 +1,6 @@
 package berisha.cafe;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -12,31 +11,34 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CafeManager {
     static ArrayList<Order> allOrders = new ArrayList<>();
     static AtomicInteger orderId = new AtomicInteger(0);
-
-    /**
-     * this method starts the entire process of the app.
-     */
-    public static void start(){
-        init();
+    public static void chooseStartAction() {
         IOHandler.printCup();
         IOHandler.printStartMenu();
-        Scanner scan = new Scanner(System.in);
-        int choice = scan.nextInt();
-        while (choice != 3) {
+        Scanner input = new Scanner(System.in);
+        int choice = IOHandler.isInteger(input.next());
+        while (choice != 4) {
             switch (choice) {
                 case 1 -> adminOptions();
                 case 2 -> createOrder();
                 case 3 -> System.exit(0);
             }
             IOHandler.printStartMenu();
-            choice = scan.nextInt();
+            choice = IOHandler.isInteger(input.next());
         }
+    }
+
+    /**
+     * this method starts the entire process of the app.
+     */
+    public static void startCafe(){
+        initOrders();
+        chooseStartAction();
     }
 
     /**
      * initialises two orders, so the order list is not empty upon start.
      */
-    public static void init() {
+    public static void initOrders() {
         Order order = new Order(orderId);
         order.addItem(new WhippedCream(new Coffee()));
         order.addItem(new Ice(new Tea()));
@@ -47,13 +49,14 @@ public class CafeManager {
         allOrders.add(newOrder);
     }
 
+
     /**
      * checks if the correct admin password has been entered.
      */
     public static void checkIfAdmin() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter password: ");
-        while (!input.nextLine().equals("admin123")) {
+        while (!IOHandler.validateString(input.next()).equals("admin123")) {
             System.err.println("Incorrect password. Try again.");
         }
     }
@@ -65,7 +68,7 @@ public class CafeManager {
         checkIfAdmin();
         Scanner input = new Scanner(System.in);
         IOHandler.printAdminOptions();
-        int choice = input.nextInt();
+        int choice = IOHandler.isInteger(input.next());
         while (choice != 4) {
             switch (choice) {
                 case 1 -> IOHandler.printAllOrders(allOrders);
@@ -73,7 +76,7 @@ public class CafeManager {
                 case 3 -> allOrders.removeAll(allOrders);
             }
             IOHandler.printAdminOptions();
-            choice = input.nextInt();
+            choice = IOHandler.isInteger(input.next());
         }
 
     }
@@ -85,7 +88,7 @@ public class CafeManager {
         Scanner input = new Scanner(System.in);
         IOHandler.printAllOrders(allOrders);
         System.out.println("Enter the order ID of the order you'd like to delete: ");
-        int index = input.nextInt();
+        int index = IOHandler.isInteger(input.next());
         allOrders.remove(allOrders.get(index));
     }
 
@@ -96,7 +99,7 @@ public class CafeManager {
         Scanner input = new Scanner(System.in);
         IOHandler.printOrderOptions();
         Order newOrder = new Order(orderId);
-        int choice = input.nextInt();
+        int choice = IOHandler.isInteger(input.next());
         while (choice != 9) {
             switch (choice) {
                 case 1 -> newOrder.addItem(createCoffee());
@@ -108,11 +111,12 @@ public class CafeManager {
                 case 7 -> payingForFood(newOrder);
                 case 8 -> {
                     allOrders.remove(newOrder);
-                    start();
+                    startCafe();
                 }
             }
+            allOrders.add(newOrder);
             IOHandler.printOrderOptions();
-            choice = input.nextInt();
+            choice = IOHandler.isInteger(input.next());
         }
     }
 
@@ -123,7 +127,7 @@ public class CafeManager {
         Scanner input = new Scanner(System.in);
         IOHandler.printCoffeeOptions();
         Beverage beverage = null;
-        int choice = input.nextInt();
+        int choice = IOHandler.isInteger(input.next());
         switch (choice) {
             case 1 -> beverage = Coffee.createAmarettoCoffee();
             case 2 -> beverage = Coffee.createCaramelCoffee();
@@ -145,7 +149,7 @@ public class CafeManager {
         IOHandler.printCoffeeOptions();
         IOHandler.printMenuCreationOptions();
         Menu menu = null;
-        switch (input.nextInt()) {
+        switch (IOHandler.isInteger(input.next())) {
             case 1 -> menu = choosePresetMenu();
             case 2 -> menu = createCustomMenu();
             default -> System.out.println("Going back to menu...");
@@ -160,7 +164,7 @@ public class CafeManager {
         Side side = null;
         Scanner input = new Scanner(System.in);
         IOHandler.printSideOptions();
-        int choice = input.nextInt();
+        int choice = IOHandler.isInteger(input.next());
         switch (choice) {
             case 1 -> side = new Fries();
             case 2 -> side = new Salad();
@@ -179,7 +183,7 @@ public class CafeManager {
         Menu menu = null;
         IOHandler.printMenuOptions();
         Scanner input = new Scanner(System.in);
-        int choice = input.nextInt();
+        int choice = IOHandler.isInteger(input.next());
         switch (choice) {
             case 1 -> menu = Menu.createBreakfastMenu();
             case 2 -> menu = Menu.createSandwichMenu();
@@ -197,7 +201,7 @@ public class CafeManager {
         Food food = chooseFood();
         IOHandler.pastry();
         Scanner input = new Scanner(System.in);
-        if (!input.next().toLowerCase().equals("y")) {
+        if (!IOHandler.validateString(input.next()).toLowerCase().equals("y")) {
             return new Menu(food, side, new NoPastry(), beverage);
         } else {
             return new Menu(food, side, new Croissant(), beverage);
@@ -212,7 +216,7 @@ public class CafeManager {
         Scanner input = new Scanner(System.in);
         Food food = null;
         IOHandler.printMenuOptions();
-        int choice = input.nextInt();
+        int choice = IOHandler.isInteger(input.next());
         switch (choice) {
             case 1 -> food = new Sandwich();
             case 2 -> food = new Breakfast();
@@ -229,26 +233,22 @@ public class CafeManager {
         Scanner input = new Scanner(System.in);
         System.out.println("To pay: CHF " + order.calculatePrice());
         System.out.println("Please input your payment amount: ");
-        double paymentAmount = input.nextDouble();
+        double paymentAmount = IOHandler.isDouble(input.next());
         double change = order.calculateChange(paymentAmount);
-        while (change > 0) {
+        while (change < 0) {
             System.err.println("Not enough money. Please try again: ");
-            paymentAmount = input.nextDouble();
+            paymentAmount = IOHandler.isDouble(input.next());
             change = order.calculateChange(paymentAmount);
         }
-        if (change <= 0) {
-            change *= -1;
-            change *= 100;
-            change = Math.round(change);
-            change /= 100;
+        if (change >= 0) {
             System.out.println("Here's your change: CHF " +  change);
         }
         System.out.println("Have a lovely day :)");
-        System.out.println("--------------------");
-        System.out.println("Would you like to place another order?");
+        System.out.println("─────────────────────────────────");
+        System.out.println("Would you like to continue?");
         System.out.println("Please enter 'y' or 'n'.");
-        if (input.next().toLowerCase().equals("y")) {
-            start();
+        if (IOHandler.validateString(input.next()).toLowerCase().equals("y")) {
+            chooseStartAction();
         } else {
             System.exit(0);
         }

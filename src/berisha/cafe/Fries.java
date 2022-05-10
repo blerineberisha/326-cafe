@@ -1,7 +1,7 @@
 package berisha.cafe;
 
 /**
- * This is the fries class. Fries are a side which can be ordered seperately or in a menu.
+ * This is the fries class. Fries are a side which can be ordered separately or in a menu.
  */
 public class Fries extends Side {
     @Override

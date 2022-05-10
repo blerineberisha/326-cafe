@@ -7,7 +7,7 @@ public abstract class Food extends Item {
 
     @Override
     String getDescription() {
-        return super.getDescription() + "Food: ";
+        return " ";
     }
 
     @Override
